@@ -168,7 +168,11 @@ extern const uint8_t PROGMEM analog_pin_to_channel_PGM[];
 #define digitalPinToPCICR(p)    ((((p) >= 14 && (p) <= 17) || ((p) >= 23 && (p) <= 25)) ? (&PCICR) : ((uint8_t *)0))
 #define digitalPinToPCICRbit(p) 0
 #define digitalPinToPCMSK(p)    ((((p) >= 14 && (p) <= 17) || ((p) >= 23 && (p) <= 25)) ? (&PCMSK0) : ((uint8_t *)0))
-#define digitalPinToPCMSKbit(p) ( ((p) >= 14 && (p) <= 17) ? (p) - 4 : ((p) == 14 ? 3 : ((p) == 15 ? 1 : ((p) == 16 ? 2 : ((p) == 17 ? 0 : (p - A8 + 4))))))
+// original line was:
+// #define digitalPinToPCMSKbit(p) ( ((p) >= 14 && (p) <= 17) ? (p) - 4 : ((p) == 14 ? 3 : ((p) == 15 ? 1 : ((p) == 16 ? 2 : ((p) == 17 ? 0 : (p - A8 + 4))))))
+// updated line:
+#define digitalPinToPCMSKbit(p) (((p) == 14 ? 3 : ((p) == 15 ? 1 : ((p) == 16 ? 2 : ((p) == 17 ? 0 : (p - A8 + 4))))))
+
 
 #ifdef ARDUINO_MAIN
 
